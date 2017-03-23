@@ -10,6 +10,10 @@ import io.crowdcode.speedbay.common.inmemory.InMemoryStore;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.annotation.Order;
+
+import java.util.List;
 
 /**
  * @author Ingo Düppe (Crowdcode)
@@ -25,11 +29,26 @@ public class BusinessLogicConfiguration {
     }
 
     @Bean
+    public AuctionService auctionMultiService(List<AuctionRepository> auctionRepositoryList) {
+        return new AuctionServiceBean();
+    }
+
+    @Bean
+    @Order(1)
     public AuctionRepositoryInMemoryBean auctionRepositoryInMemoryBean(
             @Qualifier("auctionStore") InMemoryStore<?> storeAuction) {
         AuctionRepositoryInMemoryBean repository = new AuctionRepositoryInMemoryBean();
         repository.setStore((InMemoryStore<Auction>) storeAuction);
         return repository;
+    }
+
+    @Bean
+    @Primary
+    @Order(2)
+    public AuctionRepositoryInMemoryBean aR(InMemoryStore<Auction> auctionStore) {
+        AuctionRepositoryInMemoryBean auctionRepositoryInMemoryBean = new AuctionRepositoryInMemoryBean();
+        auctionRepositoryInMemoryBean.setStore(auctionStore);
+        return auctionRepositoryInMemoryBean;
     }
 
     @Bean(name = {"storeAuction", "auctionStore", "inMemoryStoreAuction"})

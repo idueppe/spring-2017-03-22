@@ -6,6 +6,7 @@ import io.crowdcode.speedbay.auction.exception.BidTooLowException;
 import io.crowdcode.speedbay.auction.model.Auction;
 import io.crowdcode.speedbay.auction.model.Bid;
 import io.crowdcode.speedbay.auction.repository.AuctionRepository;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
  * @author Ingo Düppe (Crowdcode)
  */
 @Slf4j
+@Setter
 public class AuctionServiceBean implements AuctionService {
 
     private AuctionRepository auctionRepository;

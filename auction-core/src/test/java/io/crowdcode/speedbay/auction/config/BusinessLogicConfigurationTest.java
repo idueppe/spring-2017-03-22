@@ -6,7 +6,6 @@ import io.crowdcode.speedbay.auction.service.AuctionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -18,7 +17,6 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Ingo Düppe (Crowdcode)
  */
-@ContextConfiguration(locations={"classpath:applicationContext.xml"})
 public class BusinessLogicConfigurationTest {
 
     private AnnotationConfigApplicationContext context;
